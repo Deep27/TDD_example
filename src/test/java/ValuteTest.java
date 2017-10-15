@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 public class ValuteTest
 {
-    // degenerate objects
     @Test
     public void testMultiplication()
     {
