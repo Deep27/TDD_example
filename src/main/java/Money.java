@@ -1,5 +1,5 @@
 
-class Money
+class Money implements Expression
 {
     private int amount;
     private String currency;
@@ -25,6 +25,10 @@ class Money
 
     static Money franc(int amount) {
         return new Money(amount, "CHF");
+    }
+
+    Expression plus(Money addend) {
+        return new Money(amount + addend.amount, currency);
     }
 
     Money times(int multiplier) {
