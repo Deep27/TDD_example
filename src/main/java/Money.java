@@ -19,6 +19,14 @@ class Money implements Expression
                 && currency().equals(money.currency());
     }
 
+    public int getAmount() {
+        return amount;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
     static Money dollar(int amount) {
         return new Money(amount, "USD");
     }
@@ -28,7 +36,7 @@ class Money implements Expression
     }
 
     Expression plus(Money addend) {
-        return new Money(amount + addend.amount, currency);
+        return new Sum(this, addend);
     }
 
     Money times(int multiplier) {
@@ -37,5 +45,9 @@ class Money implements Expression
 
     String currency() {
         return currency;
+    }
+
+    public Money reduce(String to) {
+        return this;
     }
 }
