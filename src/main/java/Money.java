@@ -19,6 +19,16 @@ class Money implements Expression
                 && currency().equals(money.currency());
     }
 
+    @Override
+    public Expression plus(Expression addend) {
+        return new Sum(this, addend);
+    }
+
+    @Override
+    public Expression times(int multiplier) {
+        return new Money(amount * multiplier, currency);
+    }
+
     public int getAmount() {
         return amount;
     }
@@ -33,14 +43,6 @@ class Money implements Expression
 
     static Money franc(int amount) {
         return new Money(amount, "CHF");
-    }
-
-    public Expression plus(Expression addend) {
-        return new Sum(this, addend);
-    }
-
-    Expression times(int multiplier) {
-        return new Money(amount * multiplier, currency);
     }
 
     String currency() {
